@@ -33,7 +33,7 @@ import com.commonsware.cwac.merge.MergeAdapter;
 public class FolderSelectionActivity extends Activity {
 
     private static final String TAG = "FileSelection";
-    private static final String FILES_TO_UPLOAD = "upload";
+    public static final String FILES_TO_UPLOAD = "upload";
     File mainPath = new File(Environment.getExternalStorageDirectory()+"");
     private ArrayList<File> resultFileList;
 

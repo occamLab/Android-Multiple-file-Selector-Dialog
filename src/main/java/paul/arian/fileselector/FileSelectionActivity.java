@@ -31,7 +31,8 @@ public class FileSelectionActivity extends Activity {
 
     private static final String TAG = "FileSelection";
     private static final String FILES_TO_UPLOAD = "upload";
-    File mainPath = new File(Environment.getExternalStorageDirectory()+"");
+//    File mainPath = new File(Environment.getExternalStorageDirectory()+"");
+    File mainPath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)+"");
     private ArrayList<File> resultFileList;
 
     private ListView directoryView;
@@ -216,15 +217,15 @@ public class FileSelectionActivity extends Activity {
                     return object1.getName().compareTo(object2.getName());
                 }
             });
+            directoryList = new ArrayList<File>();
+            directoryNames = new ArrayList<String>();
+            for(File file: tempDirectoryList){
+                directoryList.add(file);
+                directoryNames.add(file.getName());
+            }
+            ArrayAdapter<String> directoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, directoryNames);
         }
 
-        directoryList = new ArrayList<File>();
-        directoryNames = new ArrayList<String>();
-        for(File file: tempDirectoryList){
-            directoryList.add(file);
-            directoryNames.add(file.getName());
-        }
-        ArrayAdapter<String> directoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, directoryNames);
 
 
         //Lista de ficheros
@@ -237,16 +238,13 @@ public class FileSelectionActivity extends Activity {
                     return object1.getName().compareTo(object2.getName());
                 }
             });
+            fileList = new ArrayList<File>();
+            fileNames = new ArrayList<String>();
+            for(File file : tempFileList){
+                fileList.add(file);
+                fileNames.add(file.getName());
+            }
         }
-
-        fileList = new ArrayList<File>();
-        fileNames = new ArrayList<String>();
-        for(File file : tempFileList){
-            fileList.add(file);
-            fileNames.add(file.getName());
-        }
-
-
 
         path.setText(mainPath.toString());
         iconload();
